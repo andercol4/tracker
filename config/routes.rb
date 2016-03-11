@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   end
 
   root 'home#index'
+  resources :seizures
   devise_for :users
 end

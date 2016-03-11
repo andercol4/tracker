@@ -1,0 +1,12 @@
+%h1.center
+  = @seizure.simple_date
+%h3
+  = @seizure.simple_time
+%h5
+  = "length: #{@seizure.minutes}:#{@seizure.seconds}"
+%p
+  = @seizure.notes
+- if @seizure.medicine_taken
+  %p Medicine Taken
+- else
+  %p Medicine Missed

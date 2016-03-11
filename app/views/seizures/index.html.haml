@@ -1,0 +1,14 @@
+%h1 Seizures
+.row
+  - @seizures.each do |seizure|
+    .col.m6.card
+      %span.card-title
+        = seizure.simple_date
+      %p
+        = seizure.simple_time
+        %br
+        length:
+        %br
+        = "#{seizure.minutes}:#{seizure.seconds}"
+      .card-action
+        = link_to 'More Details', seizure_path(seizure)
