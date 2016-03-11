@@ -1,0 +1,2 @@
+module SeizureHelper
+end

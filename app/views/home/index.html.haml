@@ -1,2 +1,12 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.haml
+%h1 Taylor Tracker
+.row
+  .col.m6.card.small
+    %span.card-title
+      Most recent Seizure
+    %p
+      
+      = @most_recent.date
+      %br
+      = @most_recent.time
+      %br
+      = "#{@most_recent.minutes}:#{@most_recent.seconds}"
