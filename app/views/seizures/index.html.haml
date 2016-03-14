@@ -9,6 +9,6 @@
         %br
         length:
         %br
-        = "#{seizure.minutes}:#{seizure.seconds}"
+        = seizure.parsed_length
       .card-action
         = link_to 'More Details', seizure_path(seizure)

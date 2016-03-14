@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+    %title Tracker
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+  %body
+    %nav
+      .nav-wrapper
+        %a.brand-logo{:href => "#"} Taylor Tracker
+        %ul#nav-mobile.right.hide-on-med-and-down
+          %li
+            = link_to "All Seizures", seizures_path
+          %li
+            = link_to "New Seizure", new_seizure_path
+    = yield

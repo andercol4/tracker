@@ -3,7 +3,7 @@
 %h3
   = @seizure.simple_time
 %h5
-  = "length: #{@seizure.minutes}:#{@seizure.seconds}"
+  = @seizure.parsed_length
 %p
   = @seizure.notes
 - if @seizure.medicine_taken
