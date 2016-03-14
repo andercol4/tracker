@@ -3,15 +3,15 @@
   .col.m6.card
     %span.card-title
       Most recent Seizure
-    %p
-
-      = @most_recent.simple_date
-      %br
-      = @most_recent.simple_time
-      %br
-      length
-      %br
-      = "#{@most_recent.minutes}:#{@most_recent.seconds}"
-    .card-action
-      = link_to 'More Details', seizure_path(@most_recent)
-      = link_to 'All Previous', seizures_path
+    - if @most_recent
+      %p
+        = @most_recent.simple_date
+        %br
+        = @most_recent.simple_time
+        %br
+        length
+        %br
+        = "#{@most_recent.minutes}:#{@most_recent.seconds}"
+      .card-action
+        = link_to 'More Details', seizure_path(@most_recent)
+        = link_to 'All Previous', seizures_path

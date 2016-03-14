@@ -8,11 +8,13 @@ class SeizureDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
+    taggings: Field::HasMany.with_options(class_name: "::ActsAsTaggableOn::Tagging"),
+    base_tags: Field::HasMany.with_options(class_name: "::ActsAsTaggableOn::Tag"),
+    tag_taggings: Field::HasMany.with_options(class_name: "ActsAsTaggableOn::Tagging"),
+    tags: Field::HasMany.with_options(class_name: "ActsAsTaggableOn::Tag"),
     id: Field::Number,
     date: Field::DateTime,
-    time: Field::DateTime,
-    minutes: Field::Number,
-    seconds: Field::Number,
+    length: Field::Number,
     notes: Field::Text,
     medicine_taken: Field::Boolean,
     created_at: Field::DateTime,
@@ -25,20 +27,22 @@ class SeizureDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :id,
-    :date,
-    :time,
-    :minutes,
+    :taggings,
+    :base_tags,
+    :tag_taggings,
+    :tags,
   ]
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
+    :taggings,
+    :base_tags,
+    :tag_taggings,
+    :tags,
     :id,
     :date,
-    :time,
-    :minutes,
-    :seconds,
+    :length,
     :notes,
     :medicine_taken,
     :created_at,
@@ -49,10 +53,12 @@ class SeizureDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
+    :taggings,
+    :base_tags,
+    :tag_taggings,
+    :tags,
     :date,
-    :time,
-    :minutes,
-    :seconds,
+    :length,
     :notes,
     :medicine_taken,
   ]
