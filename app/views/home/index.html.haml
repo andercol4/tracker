@@ -1,18 +1,20 @@
 .row
-  .col.m6.card
-    %span.card-title
-      Most recent Seizure
-    - if @most_recent
-      %p
-        = @most_recent.simple_date
-        %br
-        = @most_recent.simple_time
-        %br
-        length
-        %br
-        = @most_recent.parsed_length
-      .card-action
-        = link_to 'More Details', seizure_path(@most_recent)
-        = link_to 'All Previous', seizures_path
-  .col.m6.card
-    = react_component 'Average'
+  .col.m6
+    .card
+      %span.card-title
+        Most recent Seizure
+      - if @most_recent
+        %p
+          = @most_recent.simple_date
+          %br
+          = @most_recent.simple_time
+          %br
+          length
+          %br
+          = @most_recent.parsed_length
+        .card-action
+          = link_to 'More Details', seizure_path(@most_recent)
+          = link_to 'All Previous', seizures_path
+  .col.m6
+    .card
+      = react_component 'Average'
