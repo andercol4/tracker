@@ -8,6 +8,6 @@ Rails.application.routes.draw do
 
   root 'home#index'
   resources :seizures
-  get 'average', to: 'home#average', as: 'average'
+  get 'average', to: 'seizures#average', as: 'average'
   devise_for :users
 end

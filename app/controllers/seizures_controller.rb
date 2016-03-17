@@ -19,10 +19,32 @@ class SeizuresController < ApplicationController
   end
 
   def average
-    binding.pry
+    @seizures = Seizure.get_lengths(params[:time].to_i)
+    average = find_average(@seizures)
+    render json: {average: average}
   end
   private
 
+  def find_average(seizures)
+    if seizures.any?
+      total = 0
+      seizures.each do |seizure|
+        total = total += seizure.length
+      end
+      average = total / seizures.count
+      parse_length(average)
+    else
+      average = '0:00'
+    end
+  end
+  def parse_length(length)
+    minutes = length.to_s.split('')
+    seconds = minutes.pop(2)
+    minutes = minutes.join('')
+    second_percent = seconds.join('').to_i / 100.0 * 60
+    second_percent = second_percent.to_i.to_s
+    time = minutes + ':' + second_percent
+  end
   def seizure_params
     params.require(:seizure).permit(:date, :length, :notes, :medicine_taken, :tag_list)
   end

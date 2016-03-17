@@ -14,7 +14,6 @@ class Seizure < ActiveRecord::Base
     second_percent = second_percent.to_i.to_s
     time = minutes + ':' + second_percent
   end
-
   def encrypt_length
     minutes = self.length.to_s.split('')
     seconds = minutes.pop(2)
@@ -22,5 +21,9 @@ class Seizure < ActiveRecord::Base
     second_percent = second_percent.to_i.to_s
     minutes = minutes.join('')
     time = minutes + second_percent
+  end
+
+  def self.get_lengths(time = 30)
+    Seizure.where("date >= ?", time.days.ago)
   end
 end

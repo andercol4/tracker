@@ -1,18 +1,19 @@
 class Average extends React.Component {
   constructor(props){
     super(props);
+    this.refreshAverage = this.refreshAverage.bind(this);
     this.state = {averageTime: ''}
   }
   componentDidMount(){
-    refreshAverage(30)
+    this.refreshAverage()
   }
-  refreshAverage(length = 30){
+  refreshAverage(time = 30){
     $.ajax({
       url: '/average',
       type: 'GET',
-      data: {length}
+      data: {time}
     }).success(data => {
-      this.setState({averageTime: data})
+      this.setState({averageTime: data.average})
     })
   }
   render(){
@@ -22,9 +23,9 @@ class Average extends React.Component {
           Average Length
         </span>
         <div className='card-content'>
-          <h4>
-            {this.state.average}
-          </h4>
+          <h3>
+            {this.state.averageTime}
+          </h3>
         </div>
       </div>
     )
