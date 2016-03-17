@@ -7,7 +7,12 @@ class Seizure < ActiveRecord::Base
     self.date.strftime("%b %-d, %Y")
   end
   def parsed_length
-    self.length
+    minutes = self.length.to_s.split('')
+    seconds = minutes.pop(2)
+    minutes = minutes.join('')
+    second_percent = seconds.join('').to_i / 100.0 * 60
+    second_percent = second_percent.to_i.to_s
+    time = minutes + ':' + second_percent
   end
 
   def encrypt_length

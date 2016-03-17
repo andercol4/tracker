@@ -18,6 +18,9 @@ class SeizuresController < ApplicationController
     redirect_to root_path
   end
 
+  def average
+    binding.pry
+  end
   private
 
   def seizure_params
