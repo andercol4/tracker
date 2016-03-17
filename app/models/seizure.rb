@@ -11,9 +11,11 @@ class Seizure < ActiveRecord::Base
   end
 
   def encrypt_length
-    minutes = self.length
+    minutes = self.length.to_s.split('')
     seconds = minutes.pop(2)
-    second_percent = seconds % 60
-    binding.pry
+    second_percent = seconds.join('').to_i / 60.0 * 100
+    second_percent = second_percent.to_i.to_s
+    minutes = minutes.join('')
+    time = minutes + second_percent
   end
 end

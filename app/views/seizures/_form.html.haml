@@ -1,0 +1,16 @@
+.row
+  .col.s10.offset-s1
+    = form_for @seizure do |f|
+      = f.text_field :date, id: 'seizure_date'
+      = f.label :date
+      = f.number_field :length
+      = f.label :length
+      = f.text_field :notes
+      = f.label :notes
+      = f.text_field :tag_list
+      = f.label :tag_list
+      %br
+      = f.check_box :medicine_taken
+      = f.label :medicine_taken
+      %br
+      = f.submit
