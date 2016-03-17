@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   root 'home#index'
   resources :seizures
   get 'average', to: 'seizures#average', as: 'average'
+  get 'time_of_day', to: 'home#time_of_day', as: 'time_of_day'
   devise_for :users
 end

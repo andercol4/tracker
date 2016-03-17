@@ -18,3 +18,7 @@
   .col.m6
     .card
       = react_component 'Average'
+.row
+  .col.m6
+    .card
+      = react_component('TimeOfDayChart', {TimeOfDayChartData: @time_of_day_data})

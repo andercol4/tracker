@@ -23,7 +23,7 @@ class Seizure < ActiveRecord::Base
     time = minutes + second_percent
   end
 
-  def self.get_lengths(time = 30)
-    Seizure.where("date >= ?", time.days.ago)
+  def self.get_by_time(time = 30)
+    Seizure.where("date >= ?", time.to_i.days.ago)
   end
 end
