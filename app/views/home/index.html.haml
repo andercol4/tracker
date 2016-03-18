@@ -22,3 +22,12 @@
   .col.m6
     .card
       = react_component('TimeOfDayChart', {TimeOfDayChartData: @time_of_day_data})
+  .col.m6
+    .card
+      = react_component('RecentSeizureChart', {SeizureActivity: @recent_seizures})
+.row
+  .col.m12
+    .card
+      - tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class|
+        %p{ :class => css_class}
+          = tag.name
