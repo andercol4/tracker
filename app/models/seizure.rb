@@ -1,5 +1,14 @@
 class Seizure < ActiveRecord::Base
   acts_as_taggable
+  validate :seizure_date_cannot_be_in_the_future
+  validates :date, :length, presence: true
+  def seizure_date_cannot_be_in_the_future
+    if self.date < DateTime.now
+      errors.add(:expiration_date, "can't be in the past")
+    end
+  end
+
+
   def simple_time
     self.date.strftime("%l:%M %P")
   end

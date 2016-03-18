@@ -1,41 +1,47 @@
-class BillChart extends React.Component{
+class RecentSeizureChart extends React.Component{
 	constructor(props){
 		super(props)
 		this.state = {seizureActivity: this.props.seizureActivity}
 	}
 	componentDidMount(){
-		let labels =[];
+		let labels = Object.keys(this.state.seizureActivity).reverse();
 		let data = [];
-		this.state.seizureActivity.forEach( seizure => {
-			labels.push(bill.date);
-			data.push(bill.amount_owed.toFixed(2));
+		labels.forEach( label => {
+			data.push(this.state.seizureActivity[label]);
 		});
 		data = {
     labels: labels,
     datasets: [
         {
           label: "My First dataset",
-          fillColor: "rgba(20,20,120,0.5)",
+          fillColor: "rgba(255,82,82,0.25)",
           strokeColor: "rgba(220,220,220,0.8)",
-          highlightFill: "rgba(20,20,120,0.75)",
+          highlightFill: "rgba(255,82,82,0.5)",
           highlightStroke: "rgba(220,220,220,1)",
           data: data
         }
       ]
     };
 
-  let ctx = document.getElementById("billChart").getContext("2d");
+  let ctx = document.getElementById("seizure_activity").getContext("2d");
 	var myLineChart = new Chart(ctx).Line(data, {responsive:true});
 
 	}
 	componentWillUnmount(){
-		if($("billChart").length){
+		if($("seizure_activity").length){
 			this.chart.destroy();
 		}
 	}
 	render(){
-		return(<div>
-						<canvas id='billChart' />
-					 </div>)
+		return(
+      <div>
+        <span className='card-title'>
+          Recent Seizures
+        </span>
+        <div>
+          <canvas id='seizure_activity' />
+        </div>
+       </div>
+    )
 	}
 }

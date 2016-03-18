@@ -45,14 +45,15 @@ class TimeOfDayChart extends React.Component{
 		}
 	}
 	render(){
-		return(<div>
-            <span className='card-title'>
-              {this.state.period}
-            </span>
-            <div>
-              <canvas id='ToD_chart' />
-            </div>
-					 </div>
+		return(
+      <div>
+      <span className='card-title'>
+        Time of Seizure in the last {this.state.period}
+      </span>
+      <div>
+        <canvas id='ToD_chart' />
+      </div>
+		 </div>
          )
 	}
 }
