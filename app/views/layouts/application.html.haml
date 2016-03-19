@@ -8,7 +8,7 @@
   %body
     %nav
       .nav-wrapper
-        %a.brand-logo{:href => "#"} Taylor Tracker
+        = link_to 'Taylor Tracker', root_path, class: 'brand-logo'
         %ul#nav-mobile.right.hide-on-med-and-down
           %li
             = link_to "All Seizures", seizures_path
