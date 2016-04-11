@@ -28,8 +28,9 @@ class HomeController < ApplicationController
     time.to_i.times do |i|
       dataset[i.days.ago.strftime('%b %-d')] = 0
     end
-    seizures = Seizure.get_by_time(time)
+    seizures = Seizure.get_by_time(time - 1)
     seizures.each do |seizure|
+      # binding.pry
       dataset[seizure.date.strftime('%b %-d')] += 1
     end
     dataset

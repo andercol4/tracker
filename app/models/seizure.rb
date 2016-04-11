@@ -31,7 +31,7 @@ class Seizure < ActiveRecord::Base
       minutes = minutes.join('')
       second_percent = seconds.join('').to_i / 100.0 * 60
       second_percent = second_percent.to_i.to_s
-      if second_percent = '0'
+      if second_percent == '0'
         time = "#{minutes}:#{second_percent}0"
       else
         time = "#{minutes}:#{second_percent}"
@@ -47,17 +47,19 @@ class Seizure < ActiveRecord::Base
       second_percent = seconds.join('').to_i / 60.0 * 100
       second_percent = second_percent.to_i.to_s
       minutes = minutes.join('')
-      if second_percent = '0'
+      if second_percent == '0'
         time = minutes + second_percent + '0'
       else
+        # binding.pry
         time = minutes + second_percent
       end
     else
       '000'
     end
+    time
   end
 
   def self.get_by_time(time = 30)
-    Seizure.where("date >= ?", time.to_i.days.ago)
+    Seizure.where("date >= ? AND date <= ?", time.to_i.days.ago, DateTime.now)
   end
 end
